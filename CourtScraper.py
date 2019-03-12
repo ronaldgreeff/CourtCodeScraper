@@ -28,19 +28,19 @@ def list2line(a_list):
 def standardise_dict_data_output(dictionary):
     """Takes the collected information (as a dictionary), checks *if* an element present in the dict, and if so, extracts relevant data which is then standardised and returned for writing to CSV
 
-    Dictionary example: 
+    Dictionary example:
     {
-        'url': u'https://courttribunalfinder.service.gov.uk//courts/aberystwyth-justice-centre', 
+        'url': u'https://courttribunalfinder.service.gov.uk//courts/aberystwyth-justice-centre',
         'pros': {
-            u'Crown Court location code': u'3253', 
-            u'DX': u'99560 Aberystwyth 2', 
+            u'Crown Court location code': u'3253',
+            u'DX': u'99560 Aberystwyth 2',
             u'County Court location code': u'102'
-        }, 
-        'court': u'Aberystwyth Justice Centre', 
+        },
+        'court': u'Aberystwyth Justice Centre',
         'contact:': {
-            'telephone - Enquiries:': u'01970 621 250', 
+            'telephone - Enquiries:': u'01970 621 250',
             'email - County Court:': u'enquiries@aberystwyth.countycourt.gsi.gov.uk'
-        }, 
+        },
         'address': [
             {
                 u'visiting': {
@@ -108,11 +108,11 @@ def standardise_dict_data_output(dictionary):
 
             #   if item is a dictionary, extract the relevant info required for CSV
             if type(deter_address_type) == type(dict()):
- 
+
                 addresses[(address_item.keys()[0])] = {
 
-                    "town" : address_item.values()[0].get('addressLocality'), 
-                    "region" : address_item.values()[0].get('addressRegion'), 
+                    "town" : address_item.values()[0].get('addressLocality'),
+                    "region" : address_item.values()[0].get('addressRegion'),
                     "street_address" : ("\n".join(address_item.values()[0].get('streetAddress')))
 
                     }
@@ -182,7 +182,7 @@ def standardise_dict_data_output(dictionary):
                         line = contact.values()[i][x]
 
                 #   if it's a string, line = the string
-                else: 
+                else:
                     line = contact.values()[i]
 
                 if not re.findall('solicitor', line):
@@ -255,14 +255,11 @@ def process_span_address(addr_block):
 def process_single_and_multi_line_address(address_string):
     """         Takes in both multi-lined and single lined text data and returns the multi-lined data as list, otherwise returns a string
     ----------------
-
-
                   Aberystwyth Justice Centre
                                                                                     ['Aberystwyth Justice Centre', 'Y Lanfa', 'Trefechan']
                   Y Lanfa                            --->                            ----------------
                                                                                     Aberystwyth
                   Trefechan
-
     ----------------
     Aberystwyth
     ----------------
@@ -477,7 +474,7 @@ if __name__ == "__main__":
     #   Start writing to CSV, starting with the headers
     with open('dictwrite.csv', 'ab') as f:
         writer = csv.DictWriter(
-            f, 
+            f,
             fieldnames = ['court name', 'crown court id', 'county court id', 'telephone', 'email', 'visiting - street address', 'visiting - town', 'visiting - region', 'postal - street address', 'postal - town', 'postal - region']
             )
 
@@ -506,11 +503,11 @@ if __name__ == "__main__":
 
                     writer.writerow(
                         {
-                                'court name' : court_name, 
-                                'crown court id' : crown_court_id, 
-                                'county court id' : county_court_id,                                 
-                                'telephone' : telephone, 
-                                'email' : email, 
+                                'court name' : court_name,
+                                'crown court id' : crown_court_id,
+                                'county court id' : county_court_id,
+                                'telephone' : telephone,
+                                'email' : email,
 
                                 'visiting - street address' : check_val('visiting', 'street_address'),
                                 'visiting - town' : check_val('visiting', 'town'),
