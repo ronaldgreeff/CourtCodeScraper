@@ -8,14 +8,6 @@ from bs4 import BeautifulSoup as bs
 
 """CourtScraper.py - a python script for crawling, collecting, processing and exporting to csv UK court listings"""
 
-__author__ = 'Ronald Greeff'
-__credits__ = "Pavements, for keeping me off the streets"
-__license__ = "GPL"
-__version__ = "1.0.1"
-__email__ = "ron@donrondadon.com"
-__status__ = "Production"
-
-
 ############################################################################################
 ### EXTRACT THE NECESSARY DATA FROM COLLECTED DICTIONARIES AND READY IT FOR WRITE TO CSV ###
 ############################################################################################
